@@ -28,5 +28,5 @@ def findRigidTransform(points1, points2):
     result = M / M[3, 3]
     result = T2 @ result @ T1
     result = result[:3]
-    return result
+    return result[:3,:3], result[:,3]
 

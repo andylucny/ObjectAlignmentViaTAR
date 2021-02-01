@@ -8,9 +8,9 @@ from rigidTransform import findRigidTransform
 points1 = np.array([[1,0,1],[0,0,1],[0,1,1]]) 
 points2 = np.array([[0,1,1],[0,0,1],[-1,0,1]])
 
-warp = findRigidTransform(points1, points2)
+R, t = findRigidTransform(points1, points2)
 
-transformed1 = np.insert(points1, 3, values=1, axis=1) @ warp.T
+transformed1 = points1 @ R.T + t
 
 plt.fill(points1[:,0],points1[:,1],color='g',fill=True)
 plt.fill(points2[:,0],points2[:,1],color='r',fill=True)
