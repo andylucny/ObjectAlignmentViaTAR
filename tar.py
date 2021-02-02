@@ -39,10 +39,13 @@ def TARdescriptor(contour, triangleSideLength=10, N=200):
             p2 = resampled[(i+w+1)%N]
             mat = np.array([[p0[0],p0[1],1],[p1[0],p1[1],1],[p2[0],p2[1],1]])
             d[i,w] = 0.5 * np.linalg.det(mat) 
-    maximum = np.max(np.abs(d),axis=0)
-    for w in range(triangleSideLength):
-        if maximum[w] > 1e-5:
-            d[:,w] /= maximum[w]
+    #maximum = np.max(np.abs(d),axis=0)
+    #for w in range(triangleSideLength):
+    #    if maximum[w] > 1e-5:
+    #        d[:,w] /= maximum[w]
+    maximum = np.max(np.abs(d))
+    if maximum > 1e-5:
+        d /= maximum
     return d, resampled, indices
     
 def TARdistances(descriptorA, descriptorB, window=5, nms_radius=5):
