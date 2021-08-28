@@ -45,7 +45,8 @@ def cyclicDSW(s, t, window=5, percentage=1, nms_radius=-1):
     for shift in range(n):
         costs[shift], paths[shift] = DSW(s, t, shift, window)
     
-    limit = np.max(costs)*percentage/100 + 1e-5
+    limit = np.min(costs)
+    limit += (np.max(costs)-limit)*percentage/100 + 1e-5
     #print('limit',limit)
     best_costs = []
     best_paths = []

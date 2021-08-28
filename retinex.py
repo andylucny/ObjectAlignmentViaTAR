@@ -16,7 +16,7 @@ def singleScaleRetinex(img, sigma, a=10):
     
 def isodataThreshold(src, weight=0.5):
     assert(src.dtype == np.uint8)
-    histogram, _ = np.histogram(src,256)
+    histogram, _ = np.histogram(src,bins=256,range=(0,255)) 
     count = np.cumsum(histogram)
     bins = np.arange(len(histogram)).astype(np.float)
     subtotal = np.cumsum(histogram*bins)
